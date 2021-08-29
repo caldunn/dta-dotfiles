@@ -1,0 +1,25 @@
+04/07/21 (14:10:14) | INFO: Loglevel set to INFO
+17/07/21 (15:32:23) | ERROR: Input thread failed with exception: [Errno 5] Input/output error
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 937, in _get_key
+    input_key += sys.stdin.read(1)						#* Read 1 key safely with blocking on
+OSError: [Errno 5] Input/output error
+18/07/21 (17:00:55) | ERROR: Input thread failed with exception: (5, 'Input/output error')
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 985, in _get_key
+    input_key = ""
+  File "/usr/bin/bpytop", line 778, in __exit__
+    termios.tcsetattr(self.stream, termios.TCSANOW, self.original_stty)
+termios.error: (5, 'Input/output error')
+19/07/21 (12:42:16) | ERROR: Input thread failed with exception: (5, 'Input/output error')
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 985, in _get_key
+    input_key = ""
+  File "/usr/bin/bpytop", line 778, in __exit__
+    termios.tcsetattr(self.stream, termios.TCSANOW, self.original_stty)
+termios.error: (5, 'Input/output error')
+31/07/21 (10:29:36) | ERROR: Input thread failed with exception: [Errno 5] Input/output error
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 937, in _get_key
+    input_key += sys.stdin.read(1)						#* Read 1 key safely with blocking on
+OSError: [Errno 5] Input/output error
