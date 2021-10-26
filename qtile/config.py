@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 import os
 import re
 import socket
 import subprocess
+
+import libqtile.core.manager
 from libqtile import qtile
 from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
 from libqtile.command import lazy
@@ -11,9 +13,25 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from typing import List  # noqa: F401from typing import List  # noqa: F401
 
+from libqtile.log_utils import logger
 mod = "mod4"  # Sets mod key to SUPER/WINDOWS
 myTerm = "kitty"  # My terminal of choice
 myBrowser = "brave"  # My terminal of choice
+
+
+def abc(qtile: libqtile.core.manager.Qtile, *args):
+    """
+    This assumes that there are only 2 screens. Because that's what I have :)
+    """
+    to_screen = 0 if qtile.current_window.group.screen.index == 1 else 1
+    qtile.current_window.togroup(qtile.screens[to_screen].group.name)
+
+
+def switch_screens(qtile):
+    i = qtile.screens.index(qtile.current_screen)
+    group = qtile.screens[i - 1].group
+    qtile.current_screen.set_group(group)
+
 
 keys = [
     ### The essentials
@@ -131,7 +149,22 @@ keys = [
         lazy.layout.toggle_split(),
         desc='Toggle between split and unsplit sides of stack'
         ),
+    Key([mod, "control"], "semicolon",
+        lazy.spawn("systemctl suspend"),
+        desc='Sleeptime...'
+        ),
+    Key([mod, "shift"], "period",
+        lazy.function(abc),
+        desc='Custom Func...'
+        ),
+    Key([mod, "control"], "period",
+        lazy.function(switch_screens),
+        desc='Switch the screens'
+        ),
 ]
+
+
+
 
 groups = [Group("WWW", {'layout': 'monadtall'}),
           Group("DEV", {'layout': 'monadtall'}),
@@ -303,17 +336,11 @@ def init_widgets_list():
             padding=0,
             fontsize=37
         ),
-        widget.TextBox(
-            text=" ⟳",
-            padding=2,
-            foreground=colors[2],
-            background=colors[5],
-            fontsize=14
-        ),
         widget.CheckUpdates(
             update_interval=600,
             distro="Arch_checkupdates",
             display_format="{updates} Updates",
+            no_update_string="No Updates",
             foreground=colors[2],
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
             background=colors[5]
@@ -326,7 +353,7 @@ def init_widgets_list():
             fontsize=37
         ),
         widget.TextBox(
-            text=" 🖬",
+            text="🖬",
             foreground=colors[2],
             background=colors[4],
             padding=0,
@@ -346,7 +373,7 @@ def init_widgets_list():
             fontsize=37
         ),
         widget.TextBox(
-            text=" Vol:",
+            text="Vol:",
             foreground=colors[2],
             background=colors[5],
             padding=0
@@ -449,12 +476,6 @@ def window_to_next_screen(qtile):
     if i + 1 != len(qtile.screens):
         group = qtile.screens[i + 1].group.name
         qtile.current_window.togroup(group)
-
-
-def switch_screens(qtile):
-    i = qtile.screens.index(qtile.current_screen)
-    group = qtile.screens[i - 1].group
-    qtile.current_screen.set_group(group)
 
 
 mouse = [
