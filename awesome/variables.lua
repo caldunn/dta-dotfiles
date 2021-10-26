@@ -2,12 +2,12 @@ local awful = require("awful")
 local utils = require("utils")
 
 terminal = "kitty"
-browser1 = "firefox"
-browser2 = "qutebrowser"
+browser1 = "brave"
+browser2 = "firefox"
 editor = "code"
 editor_cmd = terminal .. editor
 file1 = terminal .. " -e " .. "ranger"
-file2 = "thunar"
+file2 = "pcmanfm"
 music = terminal .. " -e ncmpcpp"
 
 thermal_zone = 1

@@ -1,11 +1,52 @@
-yarn/
-transmission/
-Mailspring/
-Google/
-JetBrains/
-BraveSoftware/
-Android Open Source Project/
-Electron/
-discord/
-spotify/
-Code - OSS/
+*
+
+# Base files
+!xrandr.sh
+!.xmodmap
+!.gitignore
+!picom.conf
+
+# Entire Directories
+!qtile/
+!qtile/**/*
+
+!awesome/
+!awesome/**/*
+
+!kitty
+!kitty/**/*
+
+!bpytop/
+!bpytop/**/*
+
+!nitrogen/
+!nitrogen/**/*
+
+!pcmanfm
+!pcmanfm/**/*
+
+
+!ranger/*
+
+# Targeted dirs/files
+!autostart/
+!/autostart/monitorsetup.sh
+
+!flameshot/
+!flameshot/flameshot.ini
+
+!neofetch/
+!neofetch/config.conf
+
+# I dont need the lock. This is just so I know what I have used for things :) (dev http servers)
+!yarn/
+!yarn/global
+!yarn/global/package.json
+
+!pcmanf/
+!picom.conf/
+
+
+
+# Remove all log files that may be have been added from wildcards.
+*.log

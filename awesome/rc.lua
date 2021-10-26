@@ -158,3 +158,13 @@ quake = utils.quake {
   argname = "--class %s",
 }
 
+do 
+	local cmds = {
+		"jetbrains-toolbox",
+	}
+	for _,i in pairs(cmds) do
+		awful.util.spawn(i)
+	end
+end
+
+
