@@ -5,6 +5,7 @@
 !.xmodmap
 !.gitignore
 !picom.conf
+!README.md
 
 # Entire Directories
 !qtile/
