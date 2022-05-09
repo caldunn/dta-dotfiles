@@ -40,12 +40,16 @@ keys = [
         desc='Launches My Terminal'
         ),
     Key(["mod1"], "space",
-        lazy.spawn("dmenu_run -p 'Run: '"),
+        lazy.spawn("dmenu_run -p 'Run: ' -fn 'JetBrains Mono-12' -g 3 -l 5"),
         desc='Run Launcher'
         ),
     Key([mod], "w",
         lazy.spawn(myBrowser),
         desc='Qutebrowser'
+        ),
+    Key([mod, "shift"], "s",
+        lazy.spawn("flameshot gui"),
+        desc='Take a screenshot'
         ),
     Key([mod], "Tab",
         lazy.next_layout(),
@@ -61,6 +65,10 @@ keys = [
         ),
     Key([mod, "shift"], "F2",
         lazy.shutdown(),
+        desc='Shutdown Qtile'
+        ),
+    Key([mod, "shift"], "F3",
+        lazy.spawn('/home/caleb/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize'),
         desc='Shutdown Qtile'
         ),
     # Switch focus to specific monitor (out of three)
@@ -241,7 +249,7 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 widget_defaults = dict(
     font="JetBrains Mono",
     fontsize=12,
-    padding=2,
+    padding=15,
     background=colors[2]
 )
 extension_defaults = widget_defaults.copy()
@@ -362,7 +370,7 @@ def init_widgets_list():
         widget.Memory(
             foreground=colors[2],
             background=colors[4],
-            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
             padding=5
         ),
         widget.TextBox(
@@ -378,8 +386,9 @@ def init_widgets_list():
             background=colors[5],
             padding=0
         ),
-        widget.Volume(
-            volume_app="pavucontrol",
+        widget.PulseVolume(
+#            volume_app="pavucontrol",
+            volume_app="pamixer",
             foreground=colors[2],
             background=colors[5],
             padding=5
@@ -410,6 +419,11 @@ def init_widgets_list():
             padding=0,
             fontsize=37
         ),
+        # widget.Notify(
+        #    width=100,
+        #    foreground=colors[2],
+        #    background=colors[5],
+        #),
         widget.Clock(
             foreground=colors[2],
             background=colors[5],
@@ -498,7 +512,7 @@ floating_layout = layout.Floating(float_rules=[
     *layout.Floating.default_float_rules,
     Match(title='Confirmation'),  # tastyworks exit box
     Match(title='Qalculate!'),  # qalculate-gtk
-    Match(wm_class='kdenlive'),  # kdenlive
+    Match(wm_class='kdenlzive'),  # kdenlive
     Match(wm_class='pinentry-gtk-2'),  # GPG key password entry
 ])
 auto_fullscreen = True
@@ -513,6 +527,7 @@ auto_minimize = True
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
+    # subprocess.call([f'{home}/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox', '--minimize'])
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 
