@@ -8,8 +8,8 @@
 !README.md
 
 # Entire Directories
-
 !nvim/
+!nvim/**/*
 
 !qtile/
 !qtile/**/*
@@ -52,11 +52,18 @@
 !picom.conf/
 
 
+!lf/
+!lf/**
+!leftwm/
+!leftwm/**
+
+!xmobar/
+!xmobar/**
 
 # Remove all log files that may be have been added from wildcards.
 *.log
 
 
 # Override things that may have accidentally been included.
-./idea
+.idea/
 __pycache__/
