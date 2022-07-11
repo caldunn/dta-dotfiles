@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "expo-cli": "^4.9.1",
-    "five-server": "^0.0.28"
-  }
-}

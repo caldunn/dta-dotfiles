@@ -193,7 +193,7 @@ dgroups_key_binder = simple_key_binder("mod4")
 
 layout_theme = {"border_width": 2,
                 "margin": 8,
-                "border_focus": "e1acff",
+                "border_focus": "#be5046",
                 "border_normal": "1D2330"
                 }
 
@@ -234,15 +234,25 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-colors = [["#282c34", "#282c34"],  # panel background
+""" colors = [["#282c34", "#282c34"],  # panel background
           ["#3d3f4b", "#434758"],  # background for current screen tab
           ["#ffffff", "#ffffff"],  # font color for group names
           ["#ff5555", "#ff5555"],  # border line color for current tab
           ["#74438f", "#74438f"],  # border line color for 'other tabs' and color for 'odd widgets'
           ["#4f76c7", "#4f76c7"],  # color for the 'even widgets'
           ["#e1acff", "#e1acff"],  # window name
-          ["#ecbbfb", "#ecbbfb"]]  # backbround for inactive screens
+          ["#ecbbfb", "#ecbbfb"]]  # backbround for inactive screens """
 
+colors = [["#282c34", "#282c34"],  # panel background
+          ["#3d3f4b", "#434758"],  # background for current screen tab
+          ["#ffffff", "#ffffff"],  # font color for group names
+          ["#e06c75", "#e06c75"],  # border line color for current tab
+          ["#282c34", "#282c34"],  # border line color for 'other tabs' and color for 'odd widgets'
+          ["#282c34", "#282c34"],  # color for the 'even widgets'
+          ["#e06c75", "#e06c75"],  # window name
+          ["#4b5263", "#4b5263"]]  # backbround for inactive screens
+
+light_grey = ["#ABB2BF", "#ABB2BF"]
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 # DEFAULT WIDGET SETTINGS #####
@@ -271,9 +281,10 @@ def init_widgets_list():
             highlight_color=colors[1],
             highlight_method="line",
             this_current_screen_border=colors[6],
-            this_screen_border=colors[4],
+            this_screen_border=light_grey, #colors[4],
             other_current_screen_border=colors[6],
-            other_screen_border=colors[4],
+            # other_screen_border=colors[4],
+            other_screen_border=light_grey,
             foreground=colors[2],
             background=colors[0]
         ),
@@ -290,34 +301,13 @@ def init_widgets_list():
             padding=0
         ),
 
-        widget.Sep(
-            linewidth=0,
-            padding=6,
-            foreground=colors[0],
-            background=colors[0]
-        ),
-        widget.TextBox(
-            text='',
-            background=colors[0],
-            foreground=colors[5],
-            padding=0,
-            fontsize=37
-        ),
-
         widget.Net(
             interface="eno1",
             format='{down}↓ {up}↑',
             foreground=colors[2],
             background=colors[5],
-            padding=5
         ),
-        widget.TextBox(
-            text='',
-            background=colors[5],
-            foreground=colors[4],
-            padding=0,
-            fontsize=37
-        ),
+
         widget.CPU(
             foreground=colors[2],
             background=colors[4],
@@ -325,24 +315,10 @@ def init_widgets_list():
         ),
 
         widget.ThermalSensor(
-            # fmt="🌡 {}",
+            fmt="🌡 {}",
             foreground=colors[2],
             background=colors[4],
             threshold=90,
-            padding=5
-        ),
-        widget.NvidiaSensors(
-            format='{perf}',
-            update_interval=2,
-            foreground=colors[2],
-            background=colors[4],
-        ),
-        widget.TextBox(
-            text='',
-            background=colors[4],
-            foreground=colors[5],
-            padding=0,
-            fontsize=37
         ),
         widget.CheckUpdates(
             update_interval=600,
@@ -353,71 +329,20 @@ def init_widgets_list():
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
             background=colors[5]
         ),
-        widget.TextBox(
-            text='',
-            background=colors[5],
-            foreground=colors[4],
-            padding=0,
-            fontsize=37
-        ),
-        widget.TextBox(
-            text="🖬",
-            foreground=colors[2],
-            background=colors[4],
-            padding=0,
-            fontsize=14
-        ),
         widget.Memory(
+            format="🖬 {MemUsed: .0f} /{MemTotal: .0f}",
             foreground=colors[2],
             background=colors[4],
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
-            padding=5
-        ),
-        widget.TextBox(
-            text='',
-            background=colors[4],
-            foreground=colors[5],
-            padding=0,
-            fontsize=37
-        ),
-        widget.TextBox(
-            text="Vol:",
-            foreground=colors[2],
-            background=colors[5],
-            padding=0
         ),
         widget.PulseVolume(
-#            volume_app="pavucontrol",
             volume_app="pamixer",
             foreground=colors[2],
             background=colors[5],
-            padding=5
-        ),
-        widget.TextBox(
-            text='',
-            background=colors[5],
-            foreground=colors[4],
-            padding=0,
-            fontsize=37
-        ),
-        widget.CurrentLayoutIcon(
-            custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-            foreground=colors[0],
-            background=colors[4],
-            padding=0,
-            scale=0.7
         ),
         widget.CurrentLayout(
             foreground=colors[2],
             background=colors[4],
-            padding=5
-        ),
-        widget.TextBox(
-            text='',
-            background=colors[4],
-            foreground=colors[5],
-            padding=0,
-            fontsize=37
         ),
         # widget.Notify(
         #    width=100,
@@ -427,17 +352,11 @@ def init_widgets_list():
         widget.Clock(
             foreground=colors[2],
             background=colors[5],
-            format="%A, %B %d - %H:%M "
+            format="%a, %d %B - %H:%M"
         ),
         widget.Systray(
+            padding=0,
             background=colors[0],
-            padding=5
-        ),
-        widget.Sep(
-            linewidth=0,
-            padding=6,
-            foreground=colors[0],
-            background=colors[0]
         ),
     ]
     return widgets_list
@@ -445,7 +364,7 @@ def init_widgets_list():
 
 def init_widgets_screen1():
     widget_screen_1 = init_widgets_list()
-    del widget_screen_1[-2:]  # Slicing removes unwanted widgets (systray)
+    del widget_screen_1[-1:]  # Slicing removes unwanted widgets (systray)
     return widget_screen_1
 
 

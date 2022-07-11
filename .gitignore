@@ -8,8 +8,13 @@
 !README.md
 
 # Entire Directories
+
+!nvim/
+
 !qtile/
 !qtile/**/*
+# Ignore any compiled progs. 
+*.pyc
 
 !awesome/
 !awesome/**/*
@@ -36,12 +41,11 @@
 !flameshot/
 !flameshot/flameshot.ini
 
-!neofetch/
-!neofetch/config.conf
+# I dont conf this lol. -> Why was it here initially.
+# !neofetch/
+# !neofetch/config.conf
 
 # I dont need the lock. This is just so I know what I have used for things :) (dev http servers)
-!yarn/
-!yarn/global
 !yarn/global/package.json
 
 !pcmanf/
@@ -51,3 +55,8 @@
 
 # Remove all log files that may be have been added from wildcards.
 *.log
+
+
+# Override things that may have accidentally been included.
+./idea
+__pycache__/
