@@ -198,7 +198,7 @@ layout_theme = {"border_width": 2,
                 }
 
 layouts = [
-    # layout.MonadWide(**layout_theme),
+        # layout.MonadWide(**layout_theme),
     # layout.Bsp(**layout_theme),
     # layout.Stack(stacks=2, **layout_theme),
     # layout.Columns(**layout_theme),
@@ -206,9 +206,9 @@ layouts = [
     # layout.Tile(shift_windows=True, **layout_theme),
     # layout.VerticalTile(**layout_theme),
     # layout.Matrix(**layout_theme),
-    # layout.Zoomy(**layout_theme),
     layout.MonadTall(**layout_theme),
-    layout.Max(**layout_theme),
+    layout.Zoomy(**layout_theme),
+    # layout.Max(**layout_theme),
     layout.Stack(num_stacks=2),
     layout.RatioTile(**layout_theme),
     layout.TreeTab(
@@ -294,6 +294,17 @@ def init_widgets_list():
             foreground=colors[2],
             background=colors[0]
         ),
+        widget.WindowCount(
+            fontsize=14,
+            foreground=colors[6],
+            background=colors[0],
+            ),
+        widget.Sep(
+            linewidth=0,
+            padding=40,
+            foreground=colors[2],
+            background=colors[0]
+        ),
         widget.WindowName(
             fontsize=14,
             foreground=colors[6],
@@ -302,8 +313,8 @@ def init_widgets_list():
         ),
 
         widget.Net(
-            interface="eno1",
-            format='{down}↓ {up}↑',
+            interface="enp6s0",
+            format='{down} ↓ {up} ↑',
             foreground=colors[2],
             background=colors[5],
         ),
@@ -315,7 +326,15 @@ def init_widgets_list():
         ),
 
         widget.ThermalSensor(
-            fmt="🌡 {}",
+            tag_sensor='Package id 0',
+            fmt="C 🌡{}",
+            foreground=colors[2],
+            background=colors[4],
+            threshold=90,
+        ),
+        widget.ThermalSensor(
+            tag_sensor='junction',
+            fmt="G 🌡{}",
             foreground=colors[2],
             background=colors[4],
             threshold=90,
@@ -330,7 +349,7 @@ def init_widgets_list():
             background=colors[5]
         ),
         widget.Memory(
-            format="🖬 {MemUsed: .0f} /{MemTotal: .0f}",
+            format="💾{MemUsed: .0f} /{MemTotal: .0f}",
             foreground=colors[2],
             background=colors[4],
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
@@ -344,11 +363,7 @@ def init_widgets_list():
             foreground=colors[2],
             background=colors[4],
         ),
-        # widget.Notify(
-        #    width=100,
-        #    foreground=colors[2],
-        #    background=colors[5],
-        #),
+
         widget.Clock(
             foreground=colors[2],
             background=colors[5],

@@ -35,7 +35,7 @@
 !ranger/*
 
 # Targeted dirs/files
-!autostart/
+!autostart/**/*
 !/autostart/monitorsetup.sh
 
 !flameshot/
