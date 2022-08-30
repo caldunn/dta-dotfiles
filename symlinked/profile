@@ -1,0 +1,7 @@
+
+
+# Added by Toolbox App
+export PATH="$PATH:/home/caleb/bin"
+# export QT_STYLE_OVERRIDE=GTK+
+# export QT_STYLE_OVERRIDE=kvantum
+export QT_QPA_PLATFORMTHEME=qt5ct

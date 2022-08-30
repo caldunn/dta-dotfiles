@@ -22,8 +22,8 @@
 !kitty
 !kitty/**/*
 
-!bpytop/
-!bpytop/**/*
+!btop
+!btop/**/*
 
 !nitrogen/
 !nitrogen/**/*
@@ -35,15 +35,13 @@
 !ranger/*
 
 # Targeted dirs/files
-!autostart/
-!/autostart/monitorsetup.sh
+!autostart
+!autostart/**/*
 
+!dunst 
+!dunst/**/*
 !flameshot/
 !flameshot/flameshot.ini
-
-# I dont conf this lol. -> Why was it here initially.
-# !neofetch/
-# !neofetch/config.conf
 
 # I dont need the lock. This is just so I know what I have used for things :) (dev http servers)
 !yarn/global/package.json
@@ -51,14 +49,18 @@
 !pcmanf/
 !picom.conf/
 
-
 !lf/
 !lf/**
 !leftwm/
 !leftwm/**
 
+# Marked for deprecation. -> Haskell libs are updated to often for a single
+# prgram.
 !xmobar/
 !xmobar/**
+
+!symlinked
+!symlinked/**/*
 
 # Remove all log files that may be have been added from wildcards.
 *.log

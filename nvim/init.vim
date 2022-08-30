@@ -1,6 +1,8 @@
+" source ~/.config/nvim/metals.lua
+
 " Don't try to be vi compatible
 set nocompatible
-
+set clipboard+=unnamedplus
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
@@ -14,7 +16,10 @@ call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Sensible defaults for vim.
-" Plug 'tpope/vim-sensible'
+
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier'] 
+
+
 " Yet another rust toolset.
 Plug 'rust-lang/rust.vim'
 " Theme
@@ -33,6 +38,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'universal-ctags/ctags'
 Plug 'majutsushi/tagbar'
 
+Plug 'scalameta/nvim-metals'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 colorscheme onedark
@@ -123,5 +130,4 @@ set listchars=tab:▸\ ,eol:¬
 " set list " To enable by default
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
-
 
