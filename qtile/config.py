@@ -171,9 +171,6 @@ keys = [
         ),
 ]
 
-
-
-
 groups = [Group("WWW", {'layout': 'monadtall'}),
           Group("DEV", {'layout': 'monadtall'}),
           Group("SYS", {'layout': 'monadtall'}),
@@ -191,10 +188,21 @@ from libqtile.dgroups import simple_key_binder
 
 dgroups_key_binder = simple_key_binder("mod4")
 
-layout_theme = {"border_width": 2,
+colours = {
+    "dark_grey":    ["#282c34", "#282c34"],  # panel background
+    "light_grey":   ["#3d3f4b", "#3d3f4b"],  # background for current screen tab
+    "white":        ["#ffffff", "#ffffff"],  # font color for group names
+    "red":          ["#e06c75", "#e06c75"],  # border line color for current tab
+    "red_&_grey":   ["#3d3f4b", "#434758"],
+    "grey_blue":    ["#4b5263", "#4b5263"],   # backbround for inactive screens
+    "lighter_grey": ["#ABB2BF", "#ABB2BF"]
+}
+
+
+layout_theme = {"border_width": 1,
                 "margin": 8,
-                "border_focus": "#be5046",
-                "border_normal": "1D2330"
+                "border_focus": colours["red"],
+                "border_normal": "#1D2330"
                 }
 
 layouts = [
@@ -234,25 +242,9 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-""" colors = [["#282c34", "#282c34"],  # panel background
-          ["#3d3f4b", "#434758"],  # background for current screen tab
-          ["#ffffff", "#ffffff"],  # font color for group names
-          ["#ff5555", "#ff5555"],  # border line color for current tab
-          ["#74438f", "#74438f"],  # border line color for 'other tabs' and color for 'odd widgets'
-          ["#4f76c7", "#4f76c7"],  # color for the 'even widgets'
-          ["#e1acff", "#e1acff"],  # window name
-          ["#ecbbfb", "#ecbbfb"]]  # backbround for inactive screens """
 
-colors = [["#282c34", "#282c34"],  # panel background
-          ["#3d3f4b", "#434758"],  # background for current screen tab
-          ["#ffffff", "#ffffff"],  # font color for group names
-          ["#e06c75", "#e06c75"],  # border line color for current tab
-          ["#282c34", "#282c34"],  # border line color for 'other tabs' and color for 'odd widgets'
-          ["#282c34", "#282c34"],  # color for the 'even widgets'
-          ["#e06c75", "#e06c75"],  # window name
-          ["#4b5263", "#4b5263"]]  # backbround for inactive screens
 
-light_grey = ["#ABB2BF", "#ABB2BF"]
+
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 # DEFAULT WIDGET SETTINGS #####
@@ -260,7 +252,7 @@ widget_defaults = dict(
     font="JetBrains Mono",
     fontsize=12,
     padding=15,
-    background=colors[2]
+    background=colours["white"]
 )
 extension_defaults = widget_defaults.copy()
 
@@ -275,68 +267,67 @@ def init_widgets_list():
             padding_y=5,
             padding_x=3,
             borderwidth=3,
-            active=colors[2],
-            inactive=colors[7],
+            active=colours["white"],
+            inactive=colours["grey_blue"],
             rounded=False,
-            highlight_color=colors[1],
+            highlight_color=colours["red_&_grey"],
             highlight_method="line",
-            this_current_screen_border=colors[6],
-            this_screen_border=light_grey, #colors[4],
-            other_current_screen_border=colors[6],
-            # other_screen_border=colors[4],
-            other_screen_border=light_grey,
-            foreground=colors[2],
-            background=colors[0]
+            this_current_screen_border=colours["red"],
+            this_screen_border=colours["lighter_grey"], 
+            other_current_screen_border=colours["red"],
+            other_screen_border=colours["lighter_grey"],
+            foreground=colours["white"],
+            background=colours["dark_grey"]
         ),
         widget.Sep(
             linewidth=0,
             padding=40,
-            foreground=colors[2],
-            background=colors[0]
+            foreground=colours["white"],
+            background=colours["dark_grey"]
         ),
         widget.WindowCount(
             fontsize=14,
-            foreground=colors[6],
-            background=colors[0],
+            foreground=colours["red"],
+            background=colours["dark_grey"],
             ),
         widget.Sep(
             linewidth=0,
             padding=40,
-            foreground=colors[2],
-            background=colors[0]
+            foreground=colours["white"],
+            background=colours["dark_grey"]
         ),
         widget.WindowName(
             fontsize=14,
-            foreground=colors[6],
-            background=colors[0],
+            foreground=colours["white"],
+            background=colours["dark_grey"],
             padding=0
         ),
 
         widget.Net(
             interface="enp6s0",
             format='{down} ↓ {up} ↑',
-            foreground=colors[2],
-            background=colors[5],
+            foreground=colours["white"],
+            background=colours["dark_grey"],
         ),
 
         widget.CPU(
-            foreground=colors[2],
-            background=colors[4],
+            foreground=colours["white"],
+            background=colours["dark_grey"],
             format="{freq_current}GHz {load_percent}%"
         ),
 
         widget.ThermalSensor(
             tag_sensor='Package id 0',
             fmt="C 🌡{}",
-            foreground=colors[2],
-            background=colors[4],
+            foreground=colours["white"],
+            background=colours["dark_grey"],
             threshold=90,
         ),
         widget.ThermalSensor(
             tag_sensor='junction',
             fmt="G 🌡{}",
-            foreground=colors[2],
-            background=colors[4],
+            foreground=colours["white"],
+            background=colours["dark_grey"],
             threshold=90,
         ),
         widget.CheckUpdates(
@@ -344,34 +335,34 @@ def init_widgets_list():
             distro="Arch_checkupdates",
             display_format="{updates} Updates",
             no_update_string="No Updates",
-            foreground=colors[2],
+            foreground=colours["white"],
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
-            background=colors[5]
+            background=colours["dark_grey"]
         ),
         widget.Memory(
             format="💾{MemUsed: .0f} /{MemTotal: .0f}",
-            foreground=colors[2],
-            background=colors[4],
+            foreground=colours["white"],
+            background=colours["dark_grey"],
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
         ),
         widget.PulseVolume(
             volume_app="pamixer",
-            foreground=colors[2],
-            background=colors[5],
+            foreground=colours["white"],
+            background=colours["dark_grey"],
         ),
         widget.CurrentLayout(
-            foreground=colors[2],
-            background=colors[4],
+            foreground=colours["white"],
+            background=colours["dark_grey"],
         ),
 
         widget.Clock(
-            foreground=colors[2],
-            background=colors[5],
+            foreground=colours["white"],
+            background=colours["dark_grey"],
             format="%a, %d %B - %H:%M"
         ),
         widget.Systray(
             padding=0,
-            background=colors[0],
+            background=colours["dark_grey"],
         ),
     ]
     return widgets_list
