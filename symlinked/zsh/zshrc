@@ -13,6 +13,8 @@ ZSH_THEME="robbyrussell"
 alias sleep="systemctl suspend"
 alias nvim-config="nvim ~/.config/nvim/init.vim"
 alias vim="nvim"
+alias whats_my_path="echo $PATH | sed 's/:/\n/g'"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -103,20 +105,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-export ANDROID_HOME=$HOME/Android/Sdk
-
-PATH+="/usr/local/go/bin/:\
-/home/caleb/bin/:\
-  /home/caleb/bin/go/:\
-$ANDROID_HOME/emulator:\
-$ANDROID_HOME/tools:\
-$ANDROID_HOME/tools/bin:\
-$ANDROID_HOME/platform-tools:\
-/home/caleb/.local/share/coursier/bin:\
-/home/caleb/.npm-global/bin"
 
 
-export EDITOR=/usr/bin/nvim
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 

@@ -1,7 +1,20 @@
 
+# Ensure only one loading.
+[ ! -z $PROFILE_LOADED ] && return
+export PROFILE_LOADED=TRUE
 
-# Added by Toolbox App
-export PATH="$PATH:/home/caleb/bin"
-# export QT_STYLE_OVERRIDE=GTK+
-# export QT_STYLE_OVERRIDE=kvantum
+# Paths
+export ANDROID_HOME=$HOME/Android/Sdk                                                         
+
+PATH+=":/usr/local/go/bin/:\
+/home/caleb/.local/bin/:\
+/home/caleb/bin/go/:\
+$ANDROID_HOME/emulator:\
+$ANDROID_HOME/tools:\
+$ANDROID_HOME/tools/bin:\
+$ANDROID_HOME/platform-tools:\
+/home/caleb/.local/share/coursier/bin:\
+/home/caleb/.npm-global/bin"    
+
+# Control QT theme
 export QT_QPA_PLATFORMTHEME=qt5ct

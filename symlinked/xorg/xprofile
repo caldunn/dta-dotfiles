@@ -3,20 +3,15 @@ numlockx &
 
 # Bind keys. 
 xmodmap ~/.config/.xmodmap &
+xbindkeys
 
 # Monitors. 
-bash ./.config/autostart/monitorsetup.sh
+./.config/autostart/monitorsetup.sh
 
 # Wallpaper restore
 nitrogen --restore
 
 # Start picom
-# picom
 picom -b 
-
-# jetbrains-toolbox
-
-# Home Bin
-export PATH=$PATH:/home/caleb/bin
 
 [[ -f ~/.profile ]] && . ~/.profile
