@@ -16,9 +16,9 @@ call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Sensible defaults for vim.
-
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier'] 
 
+Plug 'nvim-lua/plenary.nvim'
 
 " Yet another rust toolset.
 Plug 'rust-lang/rust.vim'
@@ -27,7 +27,8 @@ Plug 'joshdick/onedark.vim'
 " File tree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'junegunn/fzf'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
 ""Plug 'scrooloose/nerdtree-project-plugin'
 
 " StatusBar

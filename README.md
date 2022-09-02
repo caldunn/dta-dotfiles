@@ -2,6 +2,9 @@
 
 ## Nothing special
 
+## Resources
+Please read [Symlinked README](https://github.com/caldunn/dta-dotfiles/tree/master/symlinked) to understand how this directory of config works.
+
 ---
 ### Credits
 Thanks to these people for some config files.

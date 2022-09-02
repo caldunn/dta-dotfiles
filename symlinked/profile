@@ -18,3 +18,5 @@ $ANDROID_HOME/platform-tools:\
 
 # Control QT theme
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+
