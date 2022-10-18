@@ -40,11 +40,13 @@ Plug 'universal-ctags/ctags'
 Plug 'majutsushi/tagbar'
 
 Plug 'scalameta/nvim-metals'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 colorscheme onedark
 
+let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " Bindings
 map <A-1> :NERDTreeToggle<CR>
 

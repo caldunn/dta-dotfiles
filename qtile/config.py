@@ -346,7 +346,8 @@ def init_widgets_list():
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
         ),
         widget.PulseVolume(
-            volume_app="pamixer",
+            volume_app="pactl",
+            update_interval=0.1,
             foreground=colours["white"],
             background=colours["dark_grey"],
         ),

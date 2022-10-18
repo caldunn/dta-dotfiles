@@ -12,9 +12,8 @@ ZSH_THEME="robbyrussell"
 # ZSH_THEME="spaceship"
 alias sleep="systemctl suspend"
 alias nvim-config="nvim ~/.config/nvim/init.vim"
-alias vim="nvim"
 alias whats_my_path="echo $PATH | sed 's/:/\n/g'"
-
+alias ldir="cd /srv/biggus/recordings/launcher"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -112,4 +111,5 @@ source /usr/share/fzf/key-bindings.zsh
 
 
 export EDITOR=/bin/nvim
+PATH+=":/home/caleb/.cargo/bin"
 [[ -f ~/.profile ]] && . ~/.profile

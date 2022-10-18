@@ -6,15 +6,13 @@ export PROFILE_LOADED=TRUE
 # Paths
 export ANDROID_HOME=$HOME/Android/Sdk                                                         
 
-PATH+=":/usr/local/go/bin/:\
-/home/caleb/.local/bin/:\
-/home/caleb/bin/go/:\
+PATH+=":/home/caleb/.local/bin/:\
 $ANDROID_HOME/emulator:\
 $ANDROID_HOME/tools:\
 $ANDROID_HOME/tools/bin:\
 $ANDROID_HOME/platform-tools:\
-/home/caleb/.local/share/coursier/bin:\
-/home/caleb/.npm-global/bin"    
+/home/caleb/.local/share/coursier/bin"
+# /home/caleb/.npm-global/bin"    
 
 # Control QT theme
 export QT_QPA_PLATFORMTHEME=qt5ct
