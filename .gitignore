@@ -10,7 +10,7 @@
 # Entire Directories
 !nvim/
 !nvim/**/*
-
+nvim/plugin/
 !qtile/
 !qtile/**/*
 # Ignore any compiled progs. 
