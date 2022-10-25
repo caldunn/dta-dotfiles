@@ -40,8 +40,6 @@ nvim/plugin/
 
 !dunst 
 !dunst/**/*
-!flameshot/
-!flameshot/flameshot.ini
 
 # I dont need the lock. This is just so I know what I have used for things :) (dev http servers)
 !yarn/global/package.json
