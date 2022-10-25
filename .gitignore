@@ -65,6 +65,8 @@ nvim/plugin/
 !kmonad/
 !kmonad/config.kbd
 
+!tmux/
+!tmux/**/*
 # Remove all log files that may be have been added from wildcards.
 *.log
 
