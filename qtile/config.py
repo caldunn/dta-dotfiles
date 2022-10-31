@@ -14,9 +14,9 @@ from libqtile.utils import guess_terminal
 from typing import List  # noqa: F401from typing import List  # noqa: F401
 
 from libqtile.log_utils import logger
-mod = "mod4"  # Sets mod key to SUPER/WINDOWS
-myTerm = "kitty"  # My terminal of choice
-myBrowser = "brave"  # My terminal of choice
+mod = "mod4" 
+myTerm = "kitty"  
+myBrowser = "firefox" 
 
 
 def abc(qtile: libqtile.core.manager.Qtile, *args):
