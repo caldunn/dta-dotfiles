@@ -4,6 +4,7 @@ import re
 import socket
 import subprocess
 
+import time
 import libqtile.core.manager
 from libqtile import qtile
 from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
@@ -359,7 +360,8 @@ def init_widgets_list():
         widget.Clock(
             foreground=colours["white"],
             background=colours["dark_grey"],
-            format="%a, %d %B - %H:%M"
+            format="%a, %d %B - %H:%M",
+            mouse_callbacks={'Button1': unix_ts_to_clipboard, 'Button3': lambda: unix_ts_to_clipboard(True)}
         ),
         widget.Systray(
             padding=0,
@@ -368,6 +370,14 @@ def init_widgets_list():
     ]
     return widgets_list
 
+
+def unix_ts_to_clipboard(no_nano = False): 
+    ts = time.time()
+    if no_nano:
+        ts = int(ts)
+
+    cmd = f"printf {ts}| xclip -selection c"
+    subprocess.check_call(cmd, shell=True)
 
 def init_widgets_screen1():
     widget_screen_1 = init_widgets_list()
