@@ -1,6 +1,6 @@
 return {
 	settings = {
-		["rust_analyzer"] = {
+		["rust-analyzer"] = {
 			imports = {
 				granularity = {
 					group = "module",
@@ -15,6 +15,9 @@ return {
 			procMacro = {
 				enable = true,
 			},
+      typing = {
+        continueCommentsOnNewline = false,
+      }
 		},
 	},
 }

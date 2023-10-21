@@ -1,22 +1,24 @@
 local servers = {
-	"sumneko_lua",
-	-- "cssls",
-	-- "html",
-	-- "tsserver",
+	"lua_ls",
+	"taplo",
+	"tsserver",
 	"pyright",
-	-- "bashls",
-	"jsonls",
-	-- "yamlls",
-  "rust_analyzer",
+	-- "jsonls",
+	"rust_analyzer",
+	"gopls",
+	"svelte",
+	"eslint",
+	"tailwindcss",
+	-- "sql-formatter",
 }
 
 local settings = {
 	ui = {
 		border = "none",
 		icons = {
-			package_installed = "◍",
-			package_pending = "◍",
-			package_uninstalled = "◍",
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
 		},
 	},
 	log_level = vim.log.levels.INFO,
@@ -43,11 +45,19 @@ for _, server in pairs(servers) do
 	}
 
 	server = vim.split(server, "@")[1]
-
 	local require_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
 	if require_ok then
-    opts = vim.tbl_deep_extend("force", conf_opts, opts)
+		opts = vim.tbl_deep_extend("force", conf_opts, opts)
 	end
 
 	lspconfig[server].setup(opts)
 end
+
+-- Prettierd atm
+-- require("mason-null-ls").setup({
+-- 	automatic_setup = true,
+-- 	ensure_installed = {
+-- 		"prettierd",
+-- 	},
+-- 	automatic_installation = false,
+-- })
