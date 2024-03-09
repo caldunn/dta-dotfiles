@@ -348,7 +348,7 @@ def init_widgets_list():
         ),
         widget.PulseVolume(
             volume_app="pactl",
-            update_interval=0.1,
+            update_interval=0.01,
             foreground=colours["white"],
             background=colours["dark_grey"],
         ),

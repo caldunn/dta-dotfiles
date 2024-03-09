@@ -3,6 +3,7 @@ local servers = {
 	"taplo",
 	"tsserver",
 	"pyright",
+  "csharp_ls",
 	-- "jsonls",
 	"rust_analyzer",
 	"gopls",

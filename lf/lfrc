@@ -1,0 +1,2 @@
+map D $rm -rf
+map a push %mkdir<space>
